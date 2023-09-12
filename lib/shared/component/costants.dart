@@ -1,4 +1,5 @@
 class Constants{
-  static String Api_Key="58d50e0dde6f4d5685151a053882f52f";
-  static String Base_Url="newsapi.org";
+  static const String Api_Key="bdd425716299381ec36270386e980901";
+  static const String Base_Url="themoviedb.org";
+  static const String Image_Url="https://image.tmdb.org/t/p/w500";
 }
