@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:movie_app/models/nowPlaying_Response.dart';
-import 'package:movie_app/screens/Home_Item.dart';
-import 'package:movie_app/shared/network/Api_Manger.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:movies_app/screens/NowPlayingMovieListItem.dart';
+import 'package:movies_app/screens/TopratedMovieListItem.dart';
+import 'package:movies_app/shared/component/costants.dart';
+import 'package:movies_app/shared/network/Api_Manger.dart';
+
 
 class Home_Screen extends StatelessWidget {
   static const String routeName="home";
@@ -10,22 +13,64 @@ class Home_Screen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: FutureBuilder(future: Api_Manager.getPlayingResult(), builder: (context, snapshot) {
-        if (snapshot.connectionState == ConnectionState.waiting) {
-          return Center(child: CircularProgressIndicator());
-        }
-        if (snapshot.hasError) {
-          return Center(
-            child: Text("somthing has error"),
-          );
-        }
-        var nowPlaying = snapshot.data?.results ?? [];
-        return ListView.builder(itemBuilder: (context, index) {
-          return Text(nowPlaying[index].title??"");
+      body: Column(
+        children: [
+          FutureBuilder(future: Api_Manager.NowPlayingMoive(), builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return Center(child: CircularProgressIndicator());
+            }
+            if (snapshot.hasError) {
+              return Center(
+                child: Text("somthing has error"),
+              );
+            }
+            var poplurMovies = snapshot.data?.results ?? [];
+            return Expanded(
+              child: ListView.builder(scrollDirection: Axis.horizontal,itemBuilder: (context, index) {
+                return NowPlayingMovieListItem(poplurMovies[index]);
 
-        },itemCount: nowPlaying.length,);
+              },itemCount: poplurMovies.length,),
+            );
 
-      },),
+          },),
+          FutureBuilder(future: Api_Manager.NowPlayingMoive(), builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return Center(child: CircularProgressIndicator());
+            }
+            if (snapshot.hasError) {
+              return Center(
+                child: Text("somthing has error"),
+              );
+            }
+            var nowPlaying = snapshot.data?.results ?? [];
+            return Expanded(
+              child: ListView.builder(scrollDirection: Axis.horizontal,itemBuilder: (context, index) {
+                return NowPlayingMovieListItem(nowPlaying[index]);
+
+              },itemCount: nowPlaying.length,),
+            );
+
+          },),
+          FutureBuilder(future: Api_Manager.TopRatedMoive(), builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return Center(child: CircularProgressIndicator());
+            }
+            if (snapshot.hasError) {
+              return Center(
+                child: Text("somthing has error"),
+              );
+            }
+            var TopratedMovies = snapshot.data?.results ?? [];
+            return Expanded(
+              child: ListView.builder(scrollDirection: Axis.horizontal,itemBuilder: (context, index) {
+                return TopratedMovieListItem(TopratedMovies[index]);
+
+              },itemCount: TopratedMovies.length,),
+            );
+
+          },),
+        ],
+      ),
 
     );
   }

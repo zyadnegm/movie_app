@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:movie_app/screens/Home_screen.dart';
-import 'package:movie_app/shared/style/color/colors.dart';
-
 import '../screens/BrowserScreen.dart';
+import '../screens/Home_screen.dart';
 import '../screens/searchScreen.dart';
 import '../screens/watchlist.dart';
+import '../shared/style/color/colors.dart';
 
 class Home_Layout extends StatefulWidget {
   static const String routeName="lay";

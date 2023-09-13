@@ -2,19 +2,29 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
-import 'package:movie_app/models/nowPlaying_Response.dart';
-import 'package:movie_app/shared/component/costants.dart';
-
-
+import 'package:movies_app/models/NowPlayingResponse.dart';
+import 'package:movies_app/models/TopRateMoviesModel.dart';
 
 
 class Api_Manager {
-  static const playingURL="https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1&api_key=${Constants.Api_Key}";
-  static Future<NowPlayingResponse> getPlayingResult() async {
-    var response = await http.get(Uri.parse(playingURL));
-    var jasonData=jsonDecode(response.body);
-    NowPlayingResponse nowPlayingResponse=NowPlayingResponse.fromJson(jasonData);
+  static Future<Movies>NowPlayingMoive()async{
+    Uri url=Uri.https("api.themoviedb.org","/3/trending/movie/day",{
+      "api_key":"bdd425716299381ec36270386e980901"
+    });
+    var response=await http.get(url);
+    var jsondata=jsonDecode(response.body);
+    Movies nowPlayingResponse=Movies.fromJson(jsondata);
     return nowPlayingResponse;
+  }
+  static Future<TopRateMoviesModel>TopRatedMoive()async{
+    Uri url=Uri.https("api.themoviedb.org","/3/tv/top_rated",{
+      "api_key":"bdd425716299381ec36270386e980901"
+    });
+    var response=await http.get(url);
+    var jsondata=jsonDecode(response.body);
+    TopRateMoviesModel topRateMoviesModel=TopRateMoviesModel.fromJson(jsondata);
+    return topRateMoviesModel;
+  }
 
 
 
@@ -36,5 +46,3 @@ class Api_Manager {
 
 
   }
-
-}
