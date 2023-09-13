@@ -18,12 +18,12 @@ class NowPlayingMovieListItem extends StatelessWidget {
         Text(
           results.originalTitle ?? "",
           style:
-          GoogleFonts.quicksand(fontSize: 20, fontWeight: FontWeight.bold,color: Colors.black),
+          GoogleFonts.quicksand(fontSize: 20, fontWeight: FontWeight.bold,color: Colors.white),
         ),
         Text(
           results.releaseDate ?? "",
           style:
-          GoogleFonts.quicksand(fontSize: 15, fontWeight: FontWeight.w400,color: Colors.black),
+          GoogleFonts.quicksand(fontSize: 15, fontWeight: FontWeight.w400,color: Colors.white),
         ),
 
       ],

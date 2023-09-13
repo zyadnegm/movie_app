@@ -2,8 +2,10 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
-import 'package:movies_app/models/NowPlayingResponse.dart';
-import 'package:movies_app/models/TopRateMoviesModel.dart';
+
+import '../../models/NowPlayingResponse.dart';
+import '../../models/TopRateMoviesModel.dart';
+
 
 
 class Api_Manager {
@@ -29,20 +31,4 @@ class Api_Manager {
 
 
 
-
-
-    // static Future<PopularResult> getٌRealeses() async {
-    //   Uri url=Uri.https("themoviedb.org","/3/movie/popular",{
-    //     "apiKey":"bdd425716299381ec36270386e980901"
-    //   }
-    //   );
-    //   var response =await http.get(url);
-    //   print(response.body);
-    //   var jasonData=jsonDecode(response.body);
-    //   PopularResult popularResult=PopularResult.fromJson(jasonData);
-    //   return popularResult;
-    //
-    // }
-
-
-  }
+}

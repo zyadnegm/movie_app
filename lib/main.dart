@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:movies_app/Layout/Home_Layout.dart';
 import 'package:movies_app/shared/style/theme/myTheme.dart';
+
+import 'Layout/Home_Layout.dart';
 
 
 void main() {
