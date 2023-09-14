@@ -15,6 +15,7 @@ class NowPlayingMovieListItem extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           Stack(alignment: Alignment.bottomLeft, children: [
+
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 33),
               child: Container(
@@ -24,8 +25,14 @@ class NowPlayingMovieListItem extends StatelessWidget {
                     fit: BoxFit.fill,
                     image: NetworkImage(
                         "${Constants.Image_Url}${results.posterPath ?? ''}"),
-                  )),
+                  )
+              ),
             ),
+            Container(
+              padding: EdgeInsets.symmetric(horizontal: 190,vertical: 90),
+                child: Image.asset("assets/images/play-button-2.png")),
+
+
             Stack(
               alignment: Alignment.topLeft,
               children: [
@@ -47,7 +54,8 @@ class NowPlayingMovieListItem extends StatelessWidget {
                       child: Image.asset("assets/images/bookmark.png")),
                 ),
               ],
-            )
+            ),
+
 
           ]),
           // Container(color: Colors.yellow,
