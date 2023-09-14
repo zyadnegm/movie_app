@@ -20,6 +20,7 @@ class _Home_LayoutState extends State<Home_Layout> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: currentIndex,
         onTap: (value) {
