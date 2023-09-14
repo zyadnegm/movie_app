@@ -20,16 +20,19 @@ class TopratedMovieListItem extends StatelessWidget {
               elevation: 40,
               color: Color(0Xff514F4F),
               child: Container(
+                padding: EdgeInsets.only(bottom: 10),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Image(
-                      fit: BoxFit.fill,
-                      image: NetworkImage(
-                          "${Constants.Image_Url}${results.posterPath ?? ""}"),
-                      width: 130,
-                      height: 125,
+                    Container(
+                      child: Image(
+                        fit: BoxFit.fill,
+                        image: NetworkImage(
+                            "${Constants.Image_Url}${results.posterPath ?? ""}"),
+                        width: 130,
+                        height: 125,
+                      ),
                     ),
                     Padding(
                       padding: const EdgeInsets.all(3.0),
@@ -70,7 +73,7 @@ class TopratedMovieListItem extends StatelessWidget {
             ),
           ),
           Container(
-              margin: EdgeInsets.only(left: 15, top: 40),
+              margin: EdgeInsets.only(left: 12, top: 30),
               child: Image.asset("assets/images/bookmark.png")),
         ],
       ),

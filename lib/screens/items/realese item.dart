@@ -11,7 +11,9 @@ class Realease_Item extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
 
-      margin: EdgeInsets.only(top: 70,bottom: 35),
+      decoration: BoxDecoration(color: Color(0Xff282A28)),
+      padding: EdgeInsets.symmetric(vertical: 10),
+      margin: EdgeInsets.symmetric(vertical: 30,),
 
       child: Stack(
         alignment: Alignment.topLeft,
@@ -19,18 +21,19 @@ class Realease_Item extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10),
             child: Container(
+
               decoration: BoxDecoration(border: Border.all(color: Colors.black,style: BorderStyle.solid)),
               child: Image(fit: BoxFit.fill,
                 image: NetworkImage(
                     "${Constants.Image_Url}${results.posterPath ?? ""}"),
-                width: 140,
-                height: 120,
+                width: 150,
+                height: 200,
               ),
             ),
           ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10),
-            child: Container(alignment: Alignment.center,
+            child: Container(alignment: Alignment.topLeft,
                 child: Image.asset("assets/images/bookmark.png")),
           ),
         ],
