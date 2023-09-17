@@ -21,16 +21,6 @@ class Movies {
   int? totalPages;
   int? totalResults;
 
-  Map<String, dynamic> toJson() {
-    final map = <String, dynamic>{};
-    map['page'] = page;
-    if (results != null) {
-      map['results'] = results?.map((v) => v.toJson()).toList();
-    }
-    map['total_pages'] = totalPages;
-    map['total_results'] = totalResults;
-    return map;
-  }
 
 }
 
@@ -85,24 +75,5 @@ class Results {
   double? voteAverage;
   int? voteCount;
 
-  Map<String, dynamic> toJson() {
-    final map = <String, dynamic>{};
-    map['adult'] = adult;
-    map['backdrop_path'] = backdropPath;
-    map['id'] = id;
-    map['title'] = title;
-    map['original_language'] = originalLanguage;
-    map['original_title'] = originalTitle;
-    map['overview'] = overview;
-    map['poster_path'] = posterPath;
-    map['media_type'] = mediaType;
-    map['genre_ids'] = genreIds;
-    map['popularity'] = popularity;
-    map['release_date'] = releaseDate;
-    map['video'] = video;
-    map['vote_average'] = voteAverage;
-    map['vote_count'] = voteCount;
-    return map;
-  }
 
 }
