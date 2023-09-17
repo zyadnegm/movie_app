@@ -57,9 +57,12 @@ class _Search_ScreenState extends State<Search_Screen> {
                   return Center(child: Text("Smothing Wrong"),);
                 }
                 var searchData=snapshot.data!.results??[];
-                return ListView.builder(itemBuilder: (context, index) {
+                return ListView.separated(itemBuilder: (context, index) {
                   return Search_Item(searchData[index]);
-                },itemCount: searchData.length,);
+                },itemCount: searchData.length,
+                separatorBuilder: (context, index) {
+                  return Divider(color: Colors.grey,endIndent: 25,indent: 25,thickness: 2,height: 2);
+                },);
               }
               ,),
           )
