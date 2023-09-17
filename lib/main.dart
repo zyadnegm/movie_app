@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movies_app/screens/searchScreen.dart';
 import 'package:movies_app/shared/style/theme/myTheme.dart';
 
 import 'Layout/Home_Layout.dart';
