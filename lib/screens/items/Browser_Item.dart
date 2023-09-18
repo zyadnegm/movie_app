@@ -4,25 +4,13 @@ import '../../shared/component/costants.dart';
 
 class Browser_Item extends StatelessWidget {
   Genres genres;
-  List<Image>browserImages;
-
-  Browser_Item(this.genres, this.browserImages);
+  Browser_Item(this.genres);
 
   @override
   Widget build(BuildContext context) {
 
-    return item();
+    return Text(genres.name??"",style: TextStyle(color: Colors.white,fontSize: 18,fontWeight: FontWeight.bold),);
   }
-   item(){
-    for(int i=0;i<browserImages.length;i++){
-      return Stack(
-        children: [
-          browserImages[i],
-          Text(genres.name??"")
-        ],
-      );
 
-    };
-  }
 }
 
