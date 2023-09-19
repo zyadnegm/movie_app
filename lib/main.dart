@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movies_app/screens/Movie_Details.dart';
 import 'package:movies_app/screens/searchScreen.dart';
 import 'package:movies_app/shared/style/theme/myTheme.dart';
 
@@ -20,7 +21,7 @@ class MyApp extends StatelessWidget {
       initialRoute: Home_Layout.routeName,
       routes: {
         Home_Layout.routeName:(context) => Home_Layout(),
-
+        Movie_Details.routeName:(context) => Movie_Details()
 
       },
       theme: My_theme.appTheme,

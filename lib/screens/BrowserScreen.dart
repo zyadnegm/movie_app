@@ -76,34 +76,34 @@ class BrowserScreen extends StatelessWidget {
     ];
     return Scaffold(
       body: FutureBuilder(future: Api_Manager.Browser_Data(),
-      builder: (context, snapshot) {
-        if(snapshot.connectionState==ConnectionState.waiting){
-          return Center(child: CircularProgressIndicator(),);
-        }
-        if(snapshot.hasError){
-          return Center(child: Text("Somthing has error"),);
-        }
-        var brwoserdata=snapshot.data!.genres??[];
-        return GridView.builder(
-          itemCount: 10,
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
-            mainAxisSpacing: 3,
-            crossAxisSpacing: 3,
-          ),
-          itemBuilder: (context, index) {
-            return Stack(alignment: Alignment.center,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: brwoser_Images[index],
-                ),
-                Browser_Item(brwoserdata[index])
-              ],
-            );
-          },
-        );
-      },),
+        builder: (context, snapshot) {
+          if(snapshot.connectionState==ConnectionState.waiting){
+            return Center(child: CircularProgressIndicator(),);
+          }
+          if(snapshot.hasError){
+            return Center(child: Text("Somthing has error"),);
+          }
+          var brwoserdata=snapshot.data!.genres??[];
+          return GridView.builder(
+            itemCount: 10,
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              mainAxisSpacing: 3,
+              crossAxisSpacing: 3,
+            ),
+            itemBuilder: (context, index) {
+              return Stack(alignment: Alignment.center,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: brwoser_Images[index],
+                  ),
+                  Browser_Item(brwoserdata[index])
+                ],
+              );
+            },
+          );
+        },),
 
     );
   }

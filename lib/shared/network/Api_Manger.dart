@@ -3,7 +3,6 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 import 'package:movies_app/shared/component/costants.dart';
-
 import '../../models/Browser_Model.dart';
 import '../../models/NowPlayingResponse.dart';
 import '../../models/Search_Model.dart';

@@ -13,4 +13,3 @@ class Browser_Item extends StatelessWidget {
   }
 
 }
-
