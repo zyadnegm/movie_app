@@ -19,15 +19,17 @@ class Firebase_Function {
     watch.id = document.id;
     return document.set(watch);
   }
-  static Future<QuerySnapshot<Watchlist_Model>> getMovie(){
-    return getWatchListCollection().get();
-}
-  static Future<void> deleteData(String id) {
+  static Stream<QuerySnapshot<Watchlist_Model>> getMovie() {
+    return getWatchListCollection().snapshots();
+  }  static Future<void> deleteData(String id) {
     return getWatchListCollection()
         .doc(id)
         .delete()
         .then((value) => "data Deleted")
         .catchError((error) => "Failed to delete user: $error");
+  }
+  static Future<void> uptadeData(String id, Watchlist_Model watchlist_model) {
+    return getWatchListCollection().doc(id).update(watchlist_model.toJson());
   }
 }
 
