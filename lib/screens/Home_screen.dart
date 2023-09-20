@@ -89,7 +89,7 @@ class Home_Screen extends StatelessWidget {
                     },
                         child: TopratedMovieListItem(topRated[index])),
                     InkWell(onTap: () {
-                      Watchlist_Model top_movie=Watchlist_Model(tittle: topRated[index].name??"", image: topRated[index].posterPath??"");
+                      Watchlist_Model top_movie=Watchlist_Model(tittle: topRated[index].name??"", image: topRated[index].posterPath??"",isdond: true);
                       Firebase_Function.add_movie(top_movie);
                     },
                       child: Container(padding: EdgeInsets.symmetric(vertical: 30,horizontal: 13),

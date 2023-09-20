@@ -22,5 +22,12 @@ class Firebase_Function {
   static Future<QuerySnapshot<Watchlist_Model>> getMovie(){
     return getWatchListCollection().get();
 }
+  static Future<void> deleteData(String id) {
+    return getWatchListCollection()
+        .doc(id)
+        .delete()
+        .then((value) => "data Deleted")
+        .catchError((error) => "Failed to delete user: $error");
+  }
 }
 
