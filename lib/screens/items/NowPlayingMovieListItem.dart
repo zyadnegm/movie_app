@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import '../../models/NowPlayingResponse.dart';
 import '../../shared/component/costants.dart';
 
@@ -29,7 +28,7 @@ class NowPlayingMovieListItem extends StatelessWidget {
               ),
             ),
             Container(
-              padding: EdgeInsets.symmetric(horizontal: 190,vertical: 90),
+                padding: EdgeInsets.symmetric(horizontal: 190, vertical: 90),
                 child: Image.asset("assets/images/play-button-2.png")),
 
 
@@ -39,10 +38,12 @@ class NowPlayingMovieListItem extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 10),
                   child: Container(
-                    decoration: BoxDecoration(border: Border.all(color: Colors.black,style: BorderStyle.solid)),
+                    decoration: BoxDecoration(border: Border.all(color: Colors
+                        .black, style: BorderStyle.solid)),
                     child: Image(fit: BoxFit.fill,
                       image: NetworkImage(
-                          "${Constants.Image_Url}${results.posterPath ?? ""}"),
+                          "${Constants.Image_Url}${results.posterPath ??
+                              ""}"),
                       width: 100,
                       height: 130,
                     ),
@@ -58,22 +59,6 @@ class NowPlayingMovieListItem extends StatelessWidget {
 
 
           ]),
-          // Container(color: Colors.yellow,
-          //   child: Column(
-          //     children: [
-          //     Text(
-          //       results.originalTitle ?? "",
-          //       style: GoogleFonts.quicksand(
-          //           fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),
-          //     ),
-          //     Text(
-          //       results.releaseDate ?? "",
-          //       style: GoogleFonts.quicksand(
-          //           fontSize: 15, fontWeight: FontWeight.w400, color: Colors.white),
-          //     ),
-          //
-          //   ],),
-          // )
 
 
         ],

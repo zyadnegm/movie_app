@@ -15,28 +15,18 @@ class Realease_Item extends StatelessWidget {
       padding: EdgeInsets.symmetric(vertical: 10),
       margin: EdgeInsets.symmetric(vertical: 30,),
 
-      child: Stack(
-        alignment: Alignment.topLeft,
-        children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10),
-            child: Container(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 10),
+        child: Container(
 
-              decoration: BoxDecoration(border: Border.all(color: Colors.black,style: BorderStyle.solid)),
-              child: Image(fit: BoxFit.fill,
-                image: NetworkImage(
-                    "${Constants.Image_Url}${results.posterPath ?? ""}"),
-                width: 150,
-                height: 200,
-              ),
-            ),
+          decoration: BoxDecoration(border: Border.all(color: Colors.black,style: BorderStyle.solid)),
+          child: Image(fit: BoxFit.fill,
+            image: NetworkImage(
+                "${Constants.Image_Url}${results.posterPath ?? ""}"),
+            width: 150,
+            height: 200,
           ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10),
-            child: Container(alignment: Alignment.topLeft,
-                child: Image.asset("assets/images/bookmark.png")),
-          ),
-        ],
+        ),
       ),
     );
   }

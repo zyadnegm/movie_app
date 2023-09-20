@@ -10,7 +10,7 @@ class TopratedMovieListItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 200,
+      height: 300,
       decoration: BoxDecoration(color: Color(0Xff282A28)),
       child: Stack(
         children: [
@@ -72,9 +72,6 @@ class TopratedMovieListItem extends StatelessWidget {
               ),
             ),
           ),
-          Container(
-              margin: EdgeInsets.only(left: 12, top: 30),
-              child: Image.asset("assets/images/bookmark.png")),
         ],
       ),
     );
