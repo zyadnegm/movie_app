@@ -32,8 +32,8 @@ class _Home_LayoutState extends State<Home_Layout> {
         items:<BottomNavigationBarItem> [
           BottomNavigationBarItem(icon: Icon(Icons.home),label: "Home",backgroundColor: primarycolor),
           BottomNavigationBarItem(icon: Icon(Icons.search),label: "search",backgroundColor: primarycolor),
-          BottomNavigationBarItem(icon: Icon(Icons.add),label: "Browser",backgroundColor: primarycolor),
-          BottomNavigationBarItem(icon: Icon(Icons.language),label: "Watclist",backgroundColor: primarycolor),
+          BottomNavigationBarItem(icon: Icon(Icons.movie),label: "Browser",backgroundColor: primarycolor),
+          BottomNavigationBarItem(icon: Icon(Icons.book),label: "Watclist",backgroundColor: primarycolor),
         ],
       ),
       body: taps[currentIndex],

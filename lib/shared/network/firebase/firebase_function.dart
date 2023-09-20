@@ -19,5 +19,8 @@ class Firebase_Function {
     watch.id = document.id;
     return document.set(watch);
   }
+  static Future<QuerySnapshot<Watchlist_Model>> getMovie(){
+    return getWatchListCollection().get();
+}
 }
 
