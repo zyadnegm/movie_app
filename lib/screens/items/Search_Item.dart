@@ -32,7 +32,7 @@ class Search_Item extends StatelessWidget {
           ),
 
           Container(
-            width: 120,
+            width: 115,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,

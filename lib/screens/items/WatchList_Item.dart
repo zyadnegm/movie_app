@@ -17,7 +17,7 @@ class _WatchList_ItemState extends State<WatchList_Item> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(10),
+      padding: const EdgeInsets.symmetric(horizontal: 18,vertical: 23),
       child: Container(
         child: Row(
           children: [
@@ -46,7 +46,8 @@ class _WatchList_ItemState extends State<WatchList_Item> {
             ],),
 
             SizedBox(width: 15,),
-            Text(widget.watchlist_model.tittle??"",style: TextStyle(fontSize: 15,color: Colors.white,fontWeight: FontWeight.bold),)
+            Container(width: 115,
+                child: Text(widget.watchlist_model.tittle??"",style: TextStyle(fontSize: 15,color: Colors.white,fontWeight: FontWeight.bold),))
           ],
         ),
       ),

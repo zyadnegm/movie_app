@@ -1,6 +1,8 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:movies_app/screens/Home_screen.dart';
 import 'package:movies_app/screens/Movie_Details.dart';
+import 'package:movies_app/screens/login/login_screen.dart';
 import 'package:movies_app/shared/style/theme/myTheme.dart';
 
 import 'Layout/Home_Layout.dart';
@@ -23,10 +25,12 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: Home_Layout.routeName,
+      initialRoute: Login_Screen.routeName,
       routes: {
         Home_Layout.routeName:(context) => Home_Layout(),
-        Movie_Details.routeName:(context) => Movie_Details()
+        Movie_Details.routeName:(context) => Movie_Details(),
+        Login_Screen.routeName:(context) => Login_Screen(),
+        Home_Screen.routeName:(context) => Home_Screen()
 
       },
       theme: My_theme.appTheme,
