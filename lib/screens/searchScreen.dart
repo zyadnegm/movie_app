@@ -13,7 +13,7 @@ class Search_Screen extends StatefulWidget {
 
 class _Search_ScreenState extends State<Search_Screen> {
   var searchController = TextEditingController();
- 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,7 +39,7 @@ class _Search_ScreenState extends State<Search_Screen> {
                   labelText: "Search",
                   labelStyle: TextStyle(fontWeight: FontWeight.w400,color: Colors.white),
                   enabledBorder: OutlineInputBorder(
-                    gapPadding: 20,
+                      gapPadding: 20,
                       borderRadius: BorderRadius.circular(27),
                       borderSide: BorderSide(color: Colors.white)),
                   focusedBorder: OutlineInputBorder(
@@ -60,9 +60,9 @@ class _Search_ScreenState extends State<Search_Screen> {
                 return ListView.separated(itemBuilder: (context, index) {
                   return Search_Item(searchData[index]);
                 },itemCount: searchData.length,
-                separatorBuilder: (context, index) {
-                  return Divider(color: Colors.grey,endIndent: 25,indent: 25,thickness: 2,height: 2);
-                },);
+                  separatorBuilder: (context, index) {
+                    return Divider(color: Colors.grey,endIndent: 25,indent: 25,thickness: 2,height: 2);
+                  },);
               }
               ,),
           )

@@ -1,7 +1,10 @@
 
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movies_app/screens/items/Browser_Item.dart';
+import 'package:movies_app/shared/Bloc/Cubit/BrowserCubit.dart';
+import 'package:movies_app/shared/Bloc/states/Home%20States.dart';
 import 'package:movies_app/shared/network/Api_Manger.dart';
 
 import '../shared/component/costants.dart';
@@ -75,15 +78,14 @@ class BrowserScreen extends StatelessWidget {
 
     ];
     return Scaffold(
-      body: FutureBuilder(future: Api_Manager.Browser_Data(),
-        builder: (context, snapshot) {
-          if(snapshot.connectionState==ConnectionState.waiting){
-            return Center(child: CircularProgressIndicator(),);
-          }
-          if(snapshot.hasError){
-            return Center(child: Text("Somthing has error"),);
-          }
-          var brwoserdata=snapshot.data!.genres??[];
+      body: BlocProvider(
+        create: (context) => BrowserCubit()..Browser_Data(),
+        child: BlocBuilder<BrowserCubit,Home_States>(
+      builder: (context, state) {
+        if(state is HomeInitState){
+          return Center(child: CircularProgressIndicator(),);
+        }
+        else if(state is HomeMovieSucssesState){
           return GridView.builder(
             itemCount: 10,
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -98,13 +100,29 @@ class BrowserScreen extends StatelessWidget {
                     padding: const EdgeInsets.all(8.0),
                     child: brwoser_Images[index],
                   ),
-                  Browser_Item(brwoserdata[index])
+                  Browser_Item(BrowserCubit.get(context).browserdata[index])
                 ],
               );
             },
           );
-        },),
+        }
+        return Scaffold();
+
+      },
+      ),
+      ),
 
     );
   }
 }
+// FutureBuilder(future: Api_Manager.Browser_Data(),
+//         builder: (context, snapshot) {
+//           if(snapshot.connectionState==ConnectionState.waiting){
+//             return Center(child: CircularProgressIndicator(),);
+//           }
+//           if(snapshot.hasError){
+//             return Center(child: Text("Somthing has error"),);
+//           }
+//           var brwoserdata=snapshot.data!.genres??[];
+//           return
+//         },)

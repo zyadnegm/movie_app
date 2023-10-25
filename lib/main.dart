@@ -1,9 +1,13 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movies_app/screens/Home_screen.dart';
 import 'package:movies_app/screens/Movie_Details.dart';
 import 'package:movies_app/screens/login/login_screen.dart';
+import 'package:movies_app/screens/searchScreen.dart';
+import 'package:movies_app/shared/Bloc/Cubit/Home%20Cubit.dart';
 import 'package:movies_app/shared/style/theme/myTheme.dart';
+import 'package:provider/provider.dart';
 
 import 'Layout/Home_Layout.dart';
 import 'firebase_options.dart';
@@ -25,12 +29,13 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: Login_Screen.routeName,
+      initialRoute: Home_Layout.routeName,
       routes: {
         Home_Layout.routeName:(context) => Home_Layout(),
         Movie_Details.routeName:(context) => Movie_Details(),
         Login_Screen.routeName:(context) => Login_Screen(),
-        Home_Screen.routeName:(context) => Home_Screen()
+        Home_Screen.routeName:(context) => Home_Screen(),
+        Search_Screen.routeName:(context) => Search_Screen()
 
       },
       theme: My_theme.appTheme,

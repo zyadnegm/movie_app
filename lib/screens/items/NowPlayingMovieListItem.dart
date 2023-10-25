@@ -32,30 +32,7 @@ class NowPlayingMovieListItem extends StatelessWidget {
                 child: Image.asset("assets/images/play-button-2.png")),
 
 
-            Stack(
-              alignment: Alignment.topLeft,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 10),
-                  child: Container(
-                    decoration: BoxDecoration(border: Border.all(color: Colors
-                        .black, style: BorderStyle.solid)),
-                    child: Image(fit: BoxFit.fill,
-                      image: NetworkImage(
-                          "${Constants.Image_Url}${results.posterPath ??
-                              ""}"),
-                      width: 100,
-                      height: 130,
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 10),
-                  child: Container(alignment: Alignment.center,
-                      child: Image.asset("assets/images/bookmark.png")),
-                ),
-              ],
-            ),
+
 
 
           ]),

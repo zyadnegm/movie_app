@@ -1,30 +1,42 @@
 import 'package:flutter/material.dart';
 import 'package:movies_app/models/NowPlayingResponse.dart';
-
+import 'package:movies_app/shared/network/firebase/firebase_function.dart';
+import '../../models/watchlist_Model.dart';
 import '../../shared/component/costants.dart';
 
 class Realease_Item extends StatelessWidget {
   Results results;
-  Realease_Item(this.results);
+  Watchlist_Model watchlist_model;
+  Realease_Item(this.results,this.watchlist_model);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 27,top: 10),
+      child: Container(
+        height: 130,
+        decoration: BoxDecoration(color: Color(0Xff282A28)),
+        padding: EdgeInsets.symmetric(vertical: 10),
 
-      decoration: BoxDecoration(color: Color(0Xff282A28)),
-      padding: EdgeInsets.symmetric(vertical: 10),
-      margin: EdgeInsets.symmetric(vertical: 30,),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 20),
+          child: Stack(
+            children:[
+              Container(
+                width: 140,
+                decoration: BoxDecoration(border: Border.all(color: Colors.black,style: BorderStyle.solid)),
+                child: Image(fit: BoxFit.fill,
+                  image: NetworkImage(
+                      "${Constants.Image_Url}${results.posterPath ?? ""}"),
 
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 10),
-        child: Container(
-
-          decoration: BoxDecoration(border: Border.all(color: Colors.black,style: BorderStyle.solid)),
-          child: Image(fit: BoxFit.fill,
-            image: NetworkImage(
-                "${Constants.Image_Url}${results.posterPath ?? ""}"),
-            width: 150,
-            height: 200,
+                ),
+              ),
+              InkWell(
+                onTap: () {
+                  Firebase_Function.add_movie(watchlist_model);
+                },
+                  child: Image.asset("assets/images/bookmark.png")),
+            ]
           ),
         ),
       ),

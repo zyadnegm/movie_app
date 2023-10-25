@@ -21,7 +21,8 @@ class Firebase_Function {
   }
   static Stream<QuerySnapshot<Watchlist_Model>> getMovie() {
     return getWatchListCollection().snapshots();
-  }  static Future<void> deleteData(String id) {
+  }
+  static Future<void> deleteData(String id) {
     return getWatchListCollection()
         .doc(id)
         .delete()

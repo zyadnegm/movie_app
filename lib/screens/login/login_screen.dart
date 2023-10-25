@@ -4,6 +4,7 @@ import 'package:movies_app/screens/Home_screen.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 
+
 class Login_Screen extends StatelessWidget {
   static const String routeName = "login";
 
@@ -80,6 +81,7 @@ class Login_Screen extends StatelessWidget {
 
             },
                 child: ClipOval(child: Image.asset("assets/images/Google.png",width: 100,height: 100,),)),
+            SizedBox(width: 14,),
 
             InkWell(onTap: () {
 

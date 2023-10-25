@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:movies_app/shared/network/firebase/firebase_function.dart';
 import '../../models/TopRateMoviesModel.dart';
+import '../../models/watchlist_Model.dart';
 import '../../shared/component/costants.dart';
 
 class TopratedMovieListItem extends StatelessWidget {
-  Results results;
-
-  TopratedMovieListItem(this.results);
-
+  Result results;
+  Watchlist_Model watchlist_model;
+  TopratedMovieListItem(this.results,this.watchlist_model);
   @override
   Widget build(BuildContext context) {
+    int count=1;
+
     return Container(
       height: 300,
       decoration: BoxDecoration(color: Color(0Xff282A28)),
@@ -25,47 +28,70 @@ class TopratedMovieListItem extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Container(
-                      child: Image(
-                        fit: BoxFit.fill,
-                        image: NetworkImage(
-                            "${Constants.Image_Url}${results.posterPath ?? ""}"),
-                        width: 130,
-                        height: 125,
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(3.0),
-                      child: Row(
-                        children: [
-                          Icon(
-                            Icons.star,
-                            color: Colors.orangeAccent,
+                    Stack(
+                      alignment: Alignment.topLeft,
+                      children:[
+                        Container(
+                          width: 130,
+                          height: 120,
+                          child: Image(
+                            fit: BoxFit.fill,
+                            image: NetworkImage(
+                                "${Constants.Image_Url}${results.posterPath ?? ""}"),
                           ),
-                          Text("${results.voteAverage}",
-                              style: TextStyle(
-                                  fontWeight: FontWeight.w400,
-                                  color: Colors.white,
-                                  fontSize: 13))
-                        ],
+                        ),
+                        InkWell(
+                          onTap: () {
+                            Firebase_Function.add_movie(watchlist_model);
+                          },
+                            child: Image.asset("assets/images/bookmark.png")),
+                      ]
+                    ),
+                    Expanded(
+                      child: Padding(
+                        padding: const EdgeInsets.all(3.0),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Icon(
+                              Icons.star,
+                              color: Colors.orangeAccent,
+                            ),
+                            Text("${results.voteAverage}",
+                                style: TextStyle(
+                                    fontWeight: FontWeight.w400,
+                                    color: Colors.white,
+                                    fontSize: 13))
+                          ],
+                        ),
                       ),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.all(3.0),
-                      child: Text(
-                        "${results.name}",
-                        style: TextStyle(
-                            fontSize: 15,
-                            fontWeight: FontWeight.w600,
-                            color: Colors.white),
+                    SizedBox(height: 3,),
+                    Expanded(
+                      child: Padding(
+                        padding: const EdgeInsets.all(3.0),
+                        child: Container(
+                          width: 120,
+                          height: 30,
+                          child: Text(
+                            "${results.name}",
+                            style: TextStyle(
+                                fontSize: 15,
+                                fontWeight: FontWeight.w600,
+                                color: Colors.white),
+                          ),
+                        ),
                       ),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.all(3.0),
-                      child: Text("${results.firstAirDate}", style: TextStyle(
-                          fontWeight: FontWeight.w300,
-                          color: Colors.white,
-                          fontSize: 10)),
+                    SizedBox(height: 3,),
+                    Expanded(
+                      child: Padding(
+                        padding: const EdgeInsets.all(4.0),
+                        child: Text("${results.firstAirDate}", style: TextStyle(
+                            fontWeight: FontWeight.w400,
+                            color: Colors.white,
+                            fontSize: 10)),
+                      ),
                     )
                   ],
                 ),
