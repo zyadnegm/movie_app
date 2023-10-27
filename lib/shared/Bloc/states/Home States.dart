@@ -5,6 +5,8 @@ abstract class Home_States{}
 class HomeInitState extends Home_States{}
 class HomeLoadingState extends Home_States{}
 class HomeMovieSucssesState extends Home_States{}
+class HomeMovieSlideImageState extends Home_States{}
+
 class HomeMovieFaluierState extends Home_States{
   String error;
   HomeMovieFaluierState(this.error);

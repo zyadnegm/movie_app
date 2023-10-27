@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import '../../models/Browser_Model.dart';
-import '../../shared/component/costants.dart';
 
 class Browser_Item extends StatelessWidget {
   Genres genres;

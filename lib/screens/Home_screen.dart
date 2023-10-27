@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_image_slideshow/flutter_image_slideshow.dart';
 import 'package:movies_app/models/watchlist_Model.dart';
 import 'package:movies_app/screens/items/NowPlayingMovieListItem.dart';
 import 'package:movies_app/screens/items/TopratedMovieListItem.dart';
@@ -10,15 +11,13 @@ import 'package:movies_app/shared/Bloc/states/Home%20States.dart';
 
 class Home_Screen extends StatelessWidget {
   static const String routeName = "home";
-
-  // Watchlist_Model ?watch;
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(providers: [
       BlocProvider(
           create: (context) =>
-      Home_Cubite()
-        ..getNowPlayingMoive()),
+          Home_Cubite()
+            ..getNowPlayingMoive()),
       BlocProvider(create: (context) => Toprated_Cubit()..TopRatedMoive(),)
 
     ],
@@ -32,11 +31,22 @@ class Home_Screen extends StatelessWidget {
                   return Center(child: CircularProgressIndicator(),);
                 }
                 else if (state is HomeMovieSucssesState) {
-                  return ListView.builder(itemBuilder: (context, index) {
-                    return NowPlayingMovieListItem(Home_Cubite
-                        .get(context)
-                        .nowPlaying[index]);
-                  }, scrollDirection: Axis.horizontal,);
+                  List<Widget>slide=[
+                    NowPlayingMovieListItem(Home_Cubite.get(context).nowPlaying[0]),
+                    NowPlayingMovieListItem(Home_Cubite.get(context).nowPlaying[1]),
+                    NowPlayingMovieListItem(Home_Cubite.get(context).nowPlaying[2]),
+                    NowPlayingMovieListItem(Home_Cubite.get(context).nowPlaying[3]),
+                    NowPlayingMovieListItem(Home_Cubite.get(context).nowPlaying[4])
+
+                  ];
+
+                  return ImageSlideshow(
+                    indicatorColor: Colors.white,
+                    indicatorBackgroundColor: Colors.grey,
+                    indicatorBottomPadding: 50,
+                    children: slide,
+                  isLoop: true,
+                      autoPlayInterval: 1000,);
                 }
                 else if (state is HomeMovieFaluierState) {
                   return Center(child: Text("somthing went error"),);

@@ -5,7 +5,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movies_app/screens/items/Browser_Item.dart';
 import 'package:movies_app/shared/Bloc/Cubit/BrowserCubit.dart';
 import 'package:movies_app/shared/Bloc/states/Home%20States.dart';
-import 'package:movies_app/shared/network/Api_Manger.dart';
 
 import '../shared/component/costants.dart';
 
@@ -96,10 +95,9 @@ class BrowserScreen extends StatelessWidget {
             itemBuilder: (context, index) {
               return Stack(alignment: Alignment.center,
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: brwoser_Images[index],
-                  ),
+                  Container(
+                    padding: EdgeInsets.all(8),
+                      child: brwoser_Images[index]),
                   Browser_Item(BrowserCubit.get(context).browserdata[index])
                 ],
               );
@@ -115,14 +113,3 @@ class BrowserScreen extends StatelessWidget {
     );
   }
 }
-// FutureBuilder(future: Api_Manager.Browser_Data(),
-//         builder: (context, snapshot) {
-//           if(snapshot.connectionState==ConnectionState.waiting){
-//             return Center(child: CircularProgressIndicator(),);
-//           }
-//           if(snapshot.hasError){
-//             return Center(child: Text("Somthing has error"),);
-//           }
-//           var brwoserdata=snapshot.data!.genres??[];
-//           return
-//         },)
