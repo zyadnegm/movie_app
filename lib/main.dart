@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
       create: (context) => SearchCubit(),
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        initialRoute: Home_Layout.routeName,
+        initialRoute: Login_Screen.routeName,
         routes: {
           Home_Layout.routeName:(context) => Home_Layout(),
           Movie_Details.routeName:(context) => Movie_Details(),

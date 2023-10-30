@@ -1,7 +1,7 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:movies_app/screens/Home_screen.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:movies_app/Layout/Home_Layout.dart';
+import 'package:movies_app/shared/network/firebase/firebase_function.dart';
 
 
 
@@ -11,22 +11,6 @@ class Login_Screen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Future<UserCredential> signInWithGoogle() async {
-      // Trigger the authentication flow
-      final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
-
-      // Obtain the auth details from the request
-      final GoogleSignInAuthentication? googleAuth = await googleUser?.authentication;
-
-      // Create a new credential
-      final credential = GoogleAuthProvider.credential(
-        accessToken: googleAuth?.accessToken,
-        idToken: googleAuth?.idToken,
-      );
-
-      // Once signed in, return the UserCredential
-      return await FirebaseAuth.instance.signInWithCredential(credential);
-    }
 
     return Scaffold(
       body: Column(
@@ -69,28 +53,20 @@ class Login_Screen extends StatelessWidget {
           ),
           SizedBox(height: 14,),
           ElevatedButton(onPressed: (){
-            Navigator.pushNamed(context, Home_Screen.routeName);
+            Navigator.pushNamed(context, Home_Layout.routeName);
           }, child: Text("Login",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 17,color: Colors.black),),
           style: ButtonStyle(backgroundColor:MaterialStatePropertyAll(Color(0XffFFBB3B)))),
           SizedBox(height: 20,),
           Text("or Login with",style: TextStyle(fontSize: 22,fontWeight: FontWeight.w400,color: Colors.white),),
           SizedBox(height: 13,),
-          Row(children: [
-            InkWell(onTap: () {
-              signInWithGoogle();
+          InkWell(onTap: () {
+            Firebase_Function.signInWithGoogle().then((value){
+              Navigator.pushReplacementNamed(context, Home_Layout.routeName);
+            } );
 
-            },
-                child: ClipOval(child: Image.asset("assets/images/Google.png",width: 100,height: 100,),)),
-            SizedBox(width: 14,),
+          },
+              child: ClipOval(child: Image.asset("assets/images/Google.png",width: 100,height: 100,),)),
 
-            InkWell(onTap: () {
-
-            },
-                child: ClipOval(child: Image.asset("assets/images/Facebook.jpeg",width: 100,height: 100,),)),
-
-
-          ]
-            ,)
 
           
 
