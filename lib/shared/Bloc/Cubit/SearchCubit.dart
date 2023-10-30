@@ -10,12 +10,16 @@ import 'package:http/http.dart' as http;
 
 class SearchCubit extends Cubit<Home_States>{
   SearchCubit():super(HomeInitState());
-  List<Results>serchdata=[];
-
   static SearchCubit get(context)=>BlocProvider.of(context);
+
+  List<Results>serchdata=[];
+  String ?query;
+
+
 
    Future<void>getSearch(String queryname)async{
      emit(HomeLoadingState());
+     query=queryname;
     Uri url=Uri.https(Constants.Base_Url,"/3/search/movie",{
       "api_key":Constants.Api_Key,
       "query":queryname

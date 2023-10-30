@@ -6,6 +6,7 @@ import 'package:movies_app/screens/Movie_Details.dart';
 import 'package:movies_app/screens/login/login_screen.dart';
 import 'package:movies_app/screens/searchScreen.dart';
 import 'package:movies_app/shared/Bloc/Cubit/Home%20Cubit.dart';
+import 'package:movies_app/shared/Bloc/Cubit/SearchCubit.dart';
 import 'package:movies_app/shared/style/theme/myTheme.dart';
 import 'package:provider/provider.dart';
 
@@ -27,20 +28,23 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      initialRoute: Home_Layout.routeName,
-      routes: {
-        Home_Layout.routeName:(context) => Home_Layout(),
-        Movie_Details.routeName:(context) => Movie_Details(),
-        Login_Screen.routeName:(context) => Login_Screen(),
-        Home_Screen.routeName:(context) => Home_Screen(),
-        Search_Screen.routeName:(context) => Search_Screen()
+    return BlocProvider(
+      create: (context) => SearchCubit(),
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        initialRoute: Home_Layout.routeName,
+        routes: {
+          Home_Layout.routeName:(context) => Home_Layout(),
+          Movie_Details.routeName:(context) => Movie_Details(),
+          Login_Screen.routeName:(context) => Login_Screen(),
+          Home_Screen.routeName:(context) => Home_Screen(),
+          Search_Screen.routeName:(context) => Search_Screen()
 
-      },
-      theme: My_theme.appTheme,
+        },
+        theme: My_theme.appTheme,
 
 
+      ),
     );
   }
 }

@@ -28,20 +28,7 @@ class Home_Cubite extends Cubit<Home_States>{
         var jsondata = jsonDecode(response.body);
         Movies nowPlayingResponse = Movies.fromJson(jsondata);
         nowPlaying=nowPlayingResponse.results??[];
-        // for(int i=0;i<nowPlaying.length;i++){
-        //     slideimage.add(nowPlaying[i].posterPath??"");
-        //     if(i==4){
-        //       break;
-        //     }
-        //   }
         emit(HomeMovieSucssesState());
-        // for(int i=0;i<nowPlaying.length;i++){
-        //   slideimage.add(nowPlaying[i]);
-        //   if(i==4){
-        //     break;
-        //   }
-        // }
-        // emit(HomeMovieSlideImageState());
 
        }).catchError((e){
          emit(HomeMovieFaluierState(e.toString()));
