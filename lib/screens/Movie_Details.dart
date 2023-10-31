@@ -93,6 +93,24 @@ class Movie_Details extends StatelessWidget {
                 ],
               )
             ],
+          ),
+          SizedBox(height: 70,),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Container(alignment: Alignment.center,
+                width: 170,
+                height: 40,
+                decoration: BoxDecoration(color: Colors.indigo
+                    ,borderRadius: BorderRadius.circular(17)),
+              child: Text("Play",style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold,color: Colors.white),),),
+              SizedBox(width: 10,),
+              Container(alignment: Alignment.center,
+                width: 170,
+                height: 40,
+                decoration: BoxDecoration(color: Colors.orange,borderRadius: BorderRadius.circular(17)),
+                child: Text("Download",style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold,color: Colors.white),),),
+            ],
           )
         ],
       ),

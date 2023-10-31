@@ -2,7 +2,9 @@ import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movies_app/models/Movie_Model.dart';
 import 'package:movies_app/models/TopRateMoviesModel.dart';
+import 'package:movies_app/screens/Movie_Details.dart';
 import 'package:movies_app/shared/Bloc/states/Home%20States.dart';
 import 'package:http/http.dart' as http;
 
@@ -34,7 +36,18 @@ class Home_Cubite extends Cubit<Home_States>{
          emit(HomeMovieFaluierState(e.toString()));
       });
       }
+      void navigate_movie(BuildContext context,String image,String tittle,String overview,double voteAverage){
+       Navigator.pushNamed(context, Movie_Details.routeName,arguments: Movie_Model(image, tittle, overview, voteAverage));
+
+      }
   }
+
+
+
+
+
+
+
   class Toprated_Cubit extends Cubit<Home_States>{
   Toprated_Cubit():super(HomeInitState());
   List<Result> toprated=[] ;

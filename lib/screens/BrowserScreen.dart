@@ -97,6 +97,7 @@ class BrowserScreen extends StatelessWidget {
                 children: [
                   Container(
                     padding: EdgeInsets.all(8),
+                      margin: EdgeInsets.all(13),
                       child: brwoser_Images[index]),
                   Browser_Item(BrowserCubit.get(context).browserdata[index])
                 ],

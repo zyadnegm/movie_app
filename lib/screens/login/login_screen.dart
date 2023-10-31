@@ -65,7 +65,7 @@ class Login_Screen extends StatelessWidget {
             } );
 
           },
-              child: ClipOval(child: Image.asset("assets/images/Google.png",width: 100,height: 100,),)),
+              child: ClipOval(child: Image.asset("assets/images/Google.png",width: 70,height: 70,),)),
 
 
           

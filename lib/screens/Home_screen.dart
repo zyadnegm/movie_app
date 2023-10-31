@@ -2,42 +2,61 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_image_slideshow/flutter_image_slideshow.dart';
 import 'package:movies_app/models/watchlist_Model.dart';
+import 'package:movies_app/screens/Movie_Details.dart';
 import 'package:movies_app/screens/items/NowPlayingMovieListItem.dart';
 import 'package:movies_app/screens/items/TopratedMovieListItem.dart';
 import 'package:movies_app/screens/items/realese%20item.dart';
 import 'package:movies_app/shared/Bloc/Cubit/Home%20Cubit.dart';
 import 'package:movies_app/shared/Bloc/states/Home%20States.dart';
 
-
 class Home_Screen extends StatelessWidget {
   static const String routeName = "home";
+
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(providers: [
-      BlocProvider(
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (context) =>
+        Home_Cubite()
+          ..getNowPlayingMoive()),
+        BlocProvider(
           create: (context) =>
-          Home_Cubite()
-            ..getNowPlayingMoive()),
-      BlocProvider(create: (context) => Toprated_Cubit()..TopRatedMoive(),)
-
-    ],
-
+          Toprated_Cubit()
+            ..TopRatedMoive(),
+        )
+      ],
       child: Column(
         children: [
-          Expanded(flex: 1,
+          Expanded(
+            flex: 1,
             child: BlocBuilder<Home_Cubite, Home_States>(
               builder: (context, state) {
                 if (state is HomeLoadingState) {
-                  return Center(child: CircularProgressIndicator(),);
-                }
-                else if (state is HomeMovieSucssesState) {
-                  List<Widget>slide=[
-                    NowPlayingMovieListItem(Home_Cubite.get(context).nowPlaying[0]),
-                    NowPlayingMovieListItem(Home_Cubite.get(context).nowPlaying[1]),
-                    NowPlayingMovieListItem(Home_Cubite.get(context).nowPlaying[2]),
-                    NowPlayingMovieListItem(Home_Cubite.get(context).nowPlaying[3]),
-                    NowPlayingMovieListItem(Home_Cubite.get(context).nowPlaying[4])
-
+                  return Center(
+                    child: CircularProgressIndicator(),
+                  );
+                } else if (state is HomeMovieSucssesState) {
+                  List<Widget> slide = [
+                    NowPlayingMovieListItem(
+                        Home_Cubite
+                            .get(context)
+                            .nowPlaying[0]),
+                    NowPlayingMovieListItem(
+                        Home_Cubite
+                            .get(context)
+                            .nowPlaying[1]),
+                    NowPlayingMovieListItem(
+                        Home_Cubite
+                            .get(context)
+                            .nowPlaying[2]),
+                    NowPlayingMovieListItem(
+                        Home_Cubite
+                            .get(context)
+                            .nowPlaying[3]),
+                    NowPlayingMovieListItem(
+                        Home_Cubite
+                            .get(context)
+                            .nowPlaying[4])
                   ];
 
                   return ImageSlideshow(
@@ -45,77 +64,120 @@ class Home_Screen extends StatelessWidget {
                     indicatorBackgroundColor: Colors.grey,
                     indicatorBottomPadding: 50,
                     children: slide,
-                  isLoop: true,
-                      autoPlayInterval: 1000,);
-                }
-                else if (state is HomeMovieFaluierState) {
-                  return Center(child: Text("somthing went error"),);
+                    isLoop: true,
+                    autoPlayInterval: 1000,
+                  );
+                } else if (state is HomeMovieFaluierState) {
+                  return Center(
+                    child: Text("somthing went error"),
+                  );
                 }
                 return Scaffold();
               },
             ),
           ),
-          Expanded(flex: 1,
+          Expanded(
+            flex: 1,
             child: BlocBuilder<Home_Cubite, Home_States>(
               builder: (context, state) {
                 if (state is HomeLoadingState) {
-                  return Center(child: CircularProgressIndicator(),);
-                }
-                else if (state is HomeMovieSucssesState) {
-                  return ListView.builder(itemBuilder: (context, index) {
-                    Watchlist_Model watch = Watchlist_Model(tittle: Home_Cubite
-                        .get(context)
-                        .nowPlaying[index].title ?? "", image: Home_Cubite
-                        .get(context)
-                        .nowPlaying[index].posterPath ?? '');
+                  return Center(
+                    child: CircularProgressIndicator(),
+                  );
+                } else if (state is HomeMovieSucssesState) {
+                  return ListView.builder(
+                    itemBuilder: (context, index) {
+                      var movie = Home_Cubite
+                          .get(context)
+                          .nowPlaying[index];
 
-                    return Realease_Item(Home_Cubite
-                        .get(context)
-                        .nowPlaying[index],watch);
-                  }, scrollDirection: Axis.horizontal,
+                      Watchlist_Model watch = Watchlist_Model(
+                          tittle: movie
+                              .title ??
+                              "",
+                          image:
+                          movie
+                              .posterPath ??
+                              '');
+
+                      return InkWell(
+                        onTap: () {
+                          Home_Cubite.get(context).navigate_movie(
+                              context,
+                              movie.posterPath ?? "",
+                              movie.title ?? "",
+                              movie.overview ?? "",
+                              movie.voteAverage ?? 0);
+                        },
+                        child: Realease_Item(
+                            movie, watch),
+                      );
+                    },
+                    scrollDirection: Axis.horizontal,
                     itemCount: Home_Cubite
                         .get(context)
                         .nowPlaying
-                        .length,);
-                }
-                else if (state is HomeMovieFaluierState) {
-                  return Center(child: Text("somthing went error"),);
+                        .length,
+                  );
+                } else if (state is HomeMovieFaluierState) {
+                  return Center(
+                    child: Text("somthing went error"),
+                  );
                 }
                 return Scaffold();
               },
             ),
           ),
-          Expanded(flex: 1,
+          Expanded(
+            flex: 1,
             child: BlocBuilder<Toprated_Cubit, Home_States>(
               builder: (context, state) {
                 if (state is HomeLoadingState) {
-                  return Center(child: CircularProgressIndicator(),);
-                }
-                else if (state is HomeTopRatedSucssesState) {
-                  return ListView.builder(itemBuilder: (context, index) {
-                    Watchlist_Model topwatch=Watchlist_Model(tittle: Toprated_Cubit.get(context).toprated[index].name??"",
-                        image: Toprated_Cubit.get(context).toprated[index].posterPath??"");
-                    return TopratedMovieListItem(Toprated_Cubit
-                        .get(context)
-                        .toprated[index],topwatch);
-                  }, scrollDirection: Axis.horizontal,
+                  return Center(
+                    child: CircularProgressIndicator(),
+                  );
+                } else if (state is HomeTopRatedSucssesState) {
+                  return ListView.builder(
+                      itemBuilder: (context, index) {
+                        var toprated=Toprated_Cubit.get(context).toprated[index];
+                        Watchlist_Model topwatch = Watchlist_Model(
+                            tittle: toprated
+                                .name ??
+                                "",
+                            image: toprated
+                                .posterPath ??
+                                "");
+                        return InkWell(
+                          onTap: () {
+                            Home_Cubite.get(context).navigate_movie(
+                                context, toprated.posterPath??"", toprated.name??"", toprated.overview??"", toprated.voteAverage??0);
+                          },
+                          child: TopratedMovieListItem(
+                              Toprated_Cubit
+                                  .get(context)
+                                  .toprated[index],
+                              topwatch),
+                        );
+                      },
+                      scrollDirection: Axis.horizontal,
                       itemCount: Toprated_Cubit
                           .get(context)
                           .toprated
                           .length);
-                }
-                else if (state is HomeTopRatedFaluierState) {
-                  return Center(child: Text("somthing went error"),);
+                } else if (state is HomeTopRatedFaluierState) {
+                  return Center(
+                    child: Text("somthing went error"),
+                  );
                 }
                 return Scaffold();
               },
             ),
           ),
         ],
-      ),);
+      ),
+    );
   }
 }
-
 
 //Scaffold(
 //       body: Column(
